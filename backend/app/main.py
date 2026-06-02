@@ -39,14 +39,18 @@ def coverage():
     return data
 
 
-# METRICS HANDSHAKE ENDPOINT FOR SIDEBAR
+# METRICS HANDSHAKE ENDPOINT FOR SIDEBAR (Top Box)
 @app.get("/api/v1/dashboard/metrics")
 def get_dashboard_metrics():
+    if not os.path.exists(MOCK_DATA_PATH):
+        return {"population_served": 0, "national_coverage_score": 0, "gap_score": 0}
 
     with open(MOCK_DATA_PATH, "r") as file:
         data = json.load(file)
 
-    regions = data["regions"]
+    regions = data.get("regions", [])
+    if not regions:
+        return {"population_served": 0, "national_coverage_score": 0, "gap_score": 0}
 
     total_population = sum(
         region["population_served"]
@@ -68,3 +72,26 @@ def get_dashboard_metrics():
         "national_coverage_score": round(average_coverage, 2),
         "gap_score": round(average_gap, 2)
     }
+
+
+# NEW ENDPOINT: PARSES RAW INDIVIDUAL POINTS FOR YOUR NEW NETWORK SIDEBAR (Bottom Box & CSV Export)
+@app.get("/api/v1/dashboard/points")
+def get_dashboard_points():
+    if not os.path.exists(MOCK_DATA_PATH):
+        return []
+
+    with open(MOCK_DATA_PATH, "r") as file:
+        data = json.load(file)
+
+    regions = data.get("regions", [])
+    
+    points_data = []
+    for idx, region in enumerate(regions):
+        points_data.append({
+            "id": region.get("id", idx + 1),
+            "name": region.get("name", f"Region {idx + 1}"),
+            "coverage": region.get("coverage_score", 0),
+            "gap": region.get("gap_score", 0)
+        })
+
+    return points_data

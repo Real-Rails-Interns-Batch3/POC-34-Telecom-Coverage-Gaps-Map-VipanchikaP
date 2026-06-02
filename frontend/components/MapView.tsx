@@ -1,5 +1,6 @@
 "use client";
 
+import "leaflet/dist/leaflet.css";
 import {
   MapContainer,
   TileLayer,
@@ -7,9 +8,8 @@ import {
   Popup,
 } from "react-leaflet";
 
-import "leaflet/dist/leaflet.css";
-
-const telecomPoints = [
+// ✅ DATA INSIDE SAME FILE (NO IMPORT ERRORS)
+export const telecomPoints = [
   {
     id: 1,
     name: "Urban Core",
@@ -31,6 +31,13 @@ const telecomPoints = [
     coverage: 33,
     gap: 67,
   },
+  {
+    id: 4,
+    name: "Coastal South",
+    position: [34.0522, -118.2437],
+    coverage: 78,
+    gap: 22,
+  },
 ];
 
 interface MapViewProps {
@@ -41,152 +48,51 @@ export default function MapView({ selectedRegion }: MapViewProps) {
   const filteredPoints =
     selectedRegion === "All Regions"
       ? telecomPoints
-      : telecomPoints.filter(
-          (point) => point.name === selectedRegion
-        );
+      : telecomPoints.filter((p) => p.name === selectedRegion);
 
-  // ================= GAP COLOR LOGIC =================
-  const getGapColor = (gap: number) => {
+  const getColor = (gap: number) => {
     if (gap <= 20) return "#22c55e";
-    if (gap <= 50) return "#facc15";
+    if (gap <= 50) return "#eab308";
     return "#ef4444";
   };
 
-  // ================= KPI CALCULATIONS =================
-  const totalRegions = filteredPoints.length;
-
-  const avgCoverage =
-    filteredPoints.reduce((sum, p) => sum + p.coverage, 0) /
-    (filteredPoints.length || 1);
-
-  const avgGap =
-    filteredPoints.reduce((sum, p) => sum + p.gap, 0) /
-    (filteredPoints.length || 1);
-
-  const criticalAreas = filteredPoints.filter(
-    (p) => p.gap > 50
-  ).length;
-
-  // ================= CSV EXPORT =================
-  const exportCSV = () => {
-    const header = ["ID", "Region", "Latitude", "Longitude", "Coverage", "Gap"];
-
-    const rows = filteredPoints.map((p) => [
-      p.id,
-      p.name,
-      p.position[0],
-      p.position[1],
-      p.coverage,
-      p.gap,
-    ]);
-
-    const csvContent =
-      [header, ...rows].map((e) => e.join(",")).join("\n");
-
-    const blob = new Blob([csvContent], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "telecom-data.csv";
-    a.click();
-
-    window.URL.revokeObjectURL(url);
-  };
-
-  // ================= CARD STYLE =================
-  const cardStyle = {
-    background: "rgba(17,17,17,0.9)",
-    color: "#fff",
-    padding: "10px",
-    borderRadius: "10px",
-    minWidth: "120px",
-    textAlign: "center" as const,
-    border: "1px solid #333",
-    backdropFilter: "blur(6px)",
-  };
-
   return (
-    <div style={{ display: "flex", height: "100vh", width: "100%" }}>
-      
-      {/* ================= LEFT SIDEBAR ================= */}
-      <div
-        style={{
-          width: "260px",
-          background: "#0f0f0f",
-          color: "#fff",
-          padding: "15px",
-          borderRight: "1px solid #333",
-        }}
+    <div style={{ height: "100%", width: "100%" }}>
+      <MapContainer
+        center={[39.5, -98.35]}
+        zoom={4}
+        scrollWheelZoom={true}
+        style={{ height: "100%", width: "100%" }}
       >
-        <h2>Network Dashboard</h2>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; OpenStreetMap"
+        />
 
-        <p>Total Regions: {totalRegions}</p>
-        <p>Avg Coverage: {avgCoverage.toFixed(1)}%</p>
-        <p>Avg Gap: {avgGap.toFixed(1)}</p>
-        <p>Critical Areas: {criticalAreas}</p>
-
-        <hr style={{ margin: "10px 0" }} />
-
-        <button
-          onClick={exportCSV}
-          style={{
-            width: "100%",
-            padding: "10px",
-            background: "#111",
-            color: "#fff",
-            border: "1px solid #333",
-            borderRadius: "6px",
-            cursor: "pointer",
-          }}
-        >
-          Export CSV
-        </button>
-
-        <div style={{ marginTop: "20px" }}>
-          <h4>Legend</h4>
-          <p>🟢 Low (0–20)</p>
-          <p>🟡 Medium (21–50)</p>
-          <p>🔴 High (51+)</p>
-        </div>
-      </div>
-
-      {/* ================= MAP AREA ================= */}
-      <div style={{ flex: 1, position: "relative" }}>
-        
-        <MapContainer
-          center={[39.5, -98.35]}
-          zoom={4}
-          scrollWheelZoom={true}
-          style={{ height: "100%", width: "100%" }}
-        >
-          <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            attribution="&copy; OpenStreetMap contributors &copy; CARTO"
-          />
-
-          {filteredPoints.map((point) => (
-            <CircleMarker
-              key={point.id}
-              center={point.position as [number, number]}
-              radius={10 + point.gap / 5}
-              pathOptions={{
-                color: getGapColor(point.gap),
-                fillOpacity: 0.6,
-              }}
-            >
-              <Popup>
-                <div>
-                  <h3>{point.name}</h3>
-                  <p>Coverage: {point.coverage}%</p>
-                  <p>Gap Score: {point.gap}</p>
-                </div>
-              </Popup>
-            </CircleMarker>
-          ))}
-        </MapContainer>
-
-      </div>
+        {filteredPoints.map((point) => (
+          <CircleMarker
+            key={point.id}
+            center={point.position as [number, number]}
+            radius={12}
+            pathOptions={{
+              color: getColor(point.gap),
+              fillColor: getColor(point.gap),
+              fillOpacity: 0.9,
+              weight: 2,
+            }}
+          >
+            <Popup>
+              <div>
+                <b>{point.name}</b>
+                <br />
+                Coverage: {point.coverage}%
+                <br />
+                Gap: {point.gap}
+              </div>
+            </Popup>
+          </CircleMarker>
+        ))}
+      </MapContainer>
     </div>
   );
-} // <--- Added this final closing curly brace to fix the build error!
+}
