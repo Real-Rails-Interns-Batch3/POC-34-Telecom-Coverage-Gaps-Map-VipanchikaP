@@ -6,7 +6,7 @@
 
 :root {
   /* Set your default background to the requested obsidian color */
-  --background: #030712;
+  --background: #7190e4;
   --foreground: #f3f4f6;
 }
 
@@ -24,7 +24,7 @@
 /* Force dark mode values to be the same obsidian scheme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #030712;
+    --background: #57585c;
     --foreground: #f3f4f6;
   }
 }
@@ -43,4 +43,17 @@ body {
   max-height: none !important;
   transition: none !important;
   animation: none !important;
+}
+
+/* ==========================================================================
+   MAP COLOR CHANGE (DARK MODE OVERRIDE)
+   ========================================================================== */
+   
+/* This attribute selector will forcefully catch the tiles regardless of loading order */
+img[class*="leaflet-tile"] {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%) !important;
+}
+
+div[class*="leaflet-container"] {
+  background-color: #0b1117 !important;
 }
