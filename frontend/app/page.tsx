@@ -2,6 +2,33 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+// Lightweight local SVG icon substitutes to avoid external dependency on `lucide-react`
+import React from "react";
+
+const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 8v4" />
+    <path d="M12 16h.01" />
+  </svg>
+);
+
+export const Info = (props: React.SVGProps<SVGSVGElement>) => <SvgIcon {...props} />;
+export const X = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18 6L6 18" />
+    <path d="M6 6l12 12" />
+  </svg>
+);
+export const SlidersHorizontal = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M4 6h16" />
+    <path d="M10 6v12" />
+    <path d="M4 18h16" />
+    <path d="M14 18V6" />
+  </svg>
+);
+export const InfoIcon = Info;
 import NetworkDashboard, { TelecomPoint } from "@/components/NetworkDashboard";
 
 // Dynamically import MapView to disable SSR since maps rely on client-side browser APIs
@@ -17,15 +44,18 @@ interface DashboardMetrics {
 }
 
 export default function Home() {
+  // --- Back-end State Hooks (Preserved) ---
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedRegion, setSelectedRegion] = useState<string>("All Regions");
   const [error, setError] = useState<string | null>(null);
-  
-  // State to store raw point metrics for our exportable Network Dashboard panel
   const [points, setPoints] = useState<TelecomPoint[]>([]);
 
-  // 1. Side effect: Fetches macro metrics whenever the region filter changes
+  // --- Cinematic UI Layout Controls ---
+  const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  // 1. Preserved Side Effect: Macro metrics fetch configuration
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -52,7 +82,7 @@ export default function Home() {
       });
   }, [selectedRegion]);
 
-  // 2. Side effect: Fetches raw individual points for the export system from FastAPI
+  // 2. Preserved Side Effect: Raw map points fetch configuration
   useEffect(() => {
     const queryParam = selectedRegion !== "All Regions" 
       ? `?region=${encodeURIComponent(selectedRegion)}` 
@@ -65,123 +95,82 @@ export default function Home() {
   }, [selectedRegion]);
 
   return (
-    <main className="flex min-h-screen bg-[#030712] text-slate-100 tracking-tight font-sans select-none">
+    /* PILLAR I: Custom Deep DNA Background (Obsidian Slate: #0e0b16, Luminance < 10%) */
+    <div className="relative w-screen h-screen overflow-hidden bg-[#0e0b16] text-slate-100 tracking-tight font-sans select-none">
       
-      {/* MAIN STAGE (70%): High-performance interactive visualization/map */}
-      <section className="w-[70%] border-r border-[#1F2937] p-6">
-        {/* Subtle glassmorphism container wrapper with exact 1px border specs */}
-        <div className="rounded-2xl border border-[#1F2937] bg-[#0B1117]/80 backdrop-blur-md p-6 shadow-2xl">
-          <h1 className="text-4xl font-bold text-white tracking-tight">
-            Telecom Coverage Gaps Map
+      {/* PILLAR III: Minimalist Transparent Header Bar */}
+      <header className="absolute top-0 left-0 z-40 w-full h-16 flex items-center justify-between px-6 bg-gradient-to-b from-[#0e0b16]/90 via-[#0e0b16]/40 to-transparent backdrop-blur-[2px] border-b border-purple-500/10">
+        <div>
+          <h1 className="text-xs font-bold tracking-widest text-slate-400 uppercase">
+            Infocreon Internship - <span className="text-purple-400">Telecom Infrastructure Engine</span>
           </h1>
-
-          <p className="mt-2 text-sm text-[#38BDF8] uppercase tracking-widest font-semibold">
-            Real Rails Intelligence Dashboard
-          </p>
-
-          <div className="mt-6 h-[80vh] overflow-hidden rounded-xl border border-[#1F2937]">
-            <MapView selectedRegion={selectedRegion} />
-          </div>
         </div>
-      </section>
-
-      {/* INTELLIGENCE SIDEBAR (30%): Structured Terminal Engine */}
-      <aside className="w-[30%] overflow-y-auto bg-[#0B1117]/90 backdrop-blur-md border-l border-[#1F2937] p-6 flex flex-col gap-6">
         
-        {/* SECTION A: Title & High-level Metrics */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-white tracking-tight">
-            Infrastructure Intelligence
-          </h2>
+        {/* Top-Right Control Actions */}
+        <div className="flex items-center gap-3">
+          {/* Main Map Layer Filter Trigger Toggle */}
+          <button 
+            onClick={() => setIsPanelOpen(!isPanelOpen)}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-[#0e0b16]/80 text-xs font-medium text-slate-300 hover:text-purple-400 hover:border-purple-500/40 transition-all duration-200"
+          >
+            <SlidersHorizontal size={14} />
+            <span>Telemetry Controls</span>
+          </button>
 
-          <div className="flex flex-col gap-4">
-            {/* POPULATION CARD */}
-            <div className="rounded-xl border border-[#1F2937] bg-[#030712]/60 p-5 transition-all hover:border-[#1F2937]/90">
-              <p className="text-xs uppercase tracking-wider text-[#818CF8] font-bold">
-                Population Served
-              </p>
-              <h3 className="mt-2 text-4xl font-bold text-white tracking-tight">
-                {loading ? (
-                  <span className="text-xl font-medium text-slate-600 animate-pulse">Loading...</span>
-                ) : (
-                  Number(metrics?.population_served || 0).toLocaleString()
-                )}
-              </h3>
-            </div>
+          {/* Core Info Icon Trigger */}
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="p-2 rounded-lg border border-slate-800 bg-[#0e0b16]/80 text-slate-400 hover:text-purple-400 hover:border-purple-500/40 transition-all duration-200"
+          >
+            <Info size={15} />
+          </button>
+        </div>
+      </header>
 
-            {/* NATIONAL COVERAGE CARD */}
-            <div className="rounded-xl border border-[#1F2937] bg-[#030712]/60 p-5 transition-all hover:border-[#1F2937]/90">
-              <p className="text-xs uppercase tracking-wider text-[#38BDF8] font-bold">
-                National Coverage Score
-              </p>
-              <h3 className="mt-2 text-4xl font-bold text-white tracking-tight">
-                {loading ? (
-                  <span className="text-xl font-medium text-slate-600 animate-pulse">Loading...</span>
-                ) : (
-                  `${metrics?.national_coverage_score ?? 0}%`
-                )}
-              </h3>
-            </div>
+      {/* PILLAR II: 100% Full viewport Stage Box */}
+      <main className="w-full h-full z-10 relative">
+        <MapView selectedRegion={selectedRegion} />
 
-            {/* GAP SCORE CARD */}
-            <div className="rounded-xl border border-[#1F2937] bg-[#030712]/60 p-5 transition-all hover:border-[#1F2937]/90">
-              <p className="text-xs uppercase tracking-wider text-[#818CF8] font-bold">
-                Gap Score
-              </p>
-              <h3 className="mt-2 text-4xl font-bold text-white tracking-tight">
-                {loading ? (
-                  <span className="text-xl font-medium text-slate-600 animate-pulse">Loading...</span>
-                ) : (
-                  metrics?.gap_score ?? 0
-                )}
-              </h3>
-            </div>
+        {/* Dynamic Map Status Indicator Widget (Bottom Left) */}
+        <div className="absolute bottom-6 left-6 z-30 p-4 rounded-xl border border-slate-800/80 bg-[#0e0b16]/90 backdrop-blur-md shadow-2xl max-w-xs">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
+            <p className="text-[10px] uppercase font-mono tracking-wider text-slate-400">Active Node Region Context:</p>
           </div>
+          <p className="text-xs font-bold text-white mt-1 uppercase tracking-wide">{selectedRegion}</p>
         </div>
+      </main>
 
-        {/* SECTION B: "Why This Matters" (Infrastructure Context) */}
-        <div className="rounded-xl border border-[#1F2937] bg-[#030712]/50 p-5 backdrop-blur-sm">
-          <h3 className="font-bold text-[#38BDF8] text-xs uppercase tracking-wider">
-            Why This Matters
-          </h3>
-          <p className="mt-2 text-xs text-slate-400 leading-relaxed">
-            Telecom infrastructure gaps isolate regional nodes, introducing digital inequality, 
-            capital market exclusion, delayed crisis response parameters, and systemic drag 
-            on active digital enterprise integration.
-          </p>
-        </div>
-
-        {/* SECTION C: "Who Controls the Rail" (Governance / Institutional Context) */}
-        <div className="rounded-xl border border-[#1F2937] bg-[#030712]/50 p-5 backdrop-blur-sm">
-          <h3 className="font-bold text-[#818CF8] text-xs uppercase tracking-wider">
-            Who Controls the Rail
-          </h3>
-          <div className="mt-3 space-y-2 text-xs">
-            <div className="flex justify-between border-b border-[#1F2937]/40 pb-1.5">
-              <span className="text-slate-400">Primary Oversight:</span>
-              <span className="text-white font-medium">Telecom Regulatory Authority</span>
-            </div>
-            <div className="flex justify-between border-b border-[#1F2937]/40 pb-1.5">
-              <span className="text-slate-400">Data Rights:</span>
-              <span className="text-white font-medium">Public-Private Consortium</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-slate-400">Data Custody:</span>
-              <span className="text-[#38BDF8] font-medium">Real Rails Ops Network</span>
-            </div>
-          </div>
-        </div>
-
-        {/* SECTION D & E: Functional Filters, Tooltips & Download Sample System */}
-        <div className="space-y-4">
-          {/* REGION FILTER */}
+      {/* PILLAR II: Slide-Over Intelligence Panel Overlay */}
+      <div 
+        className={`absolute top-0 right-0 z-50 h-full w-[420px] max-w-[90vw] bg-[#0e0b16]/95 border-l border-slate-800/80 backdrop-blur-xl shadow-2xl transition-transform duration-300 ease-in-out transform ${
+          isPanelOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        {/* Panel Container Header */}
+        <div className="flex items-center justify-between p-6 border-b border-slate-900">
           <div>
-            <label className="text-xs uppercase tracking-wider text-slate-400 font-bold">
-              Filter by Region
-            </label>
+            <span className="text-[10px] text-purple-400 font-mono tracking-widest uppercase block">Infrastructure Analytics</span>
+            <h2 className="text-md font-bold text-white tracking-tight">Intelligence Matrix</h2>
+          </div>
+          <button 
+            onClick={() => setIsPanelOpen(false)}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition-colors"
+          >
+            <X size={16} />
+          </button>
+        </div>
 
+        {/* Scrollable Content Engine Wrapper */}
+        <div className="p-6 space-y-5 overflow-y-auto h-[calc(100%-76px)]">
+          
+          {/* REGION FILTER DROPDOWN */}
+          <div className="space-y-1.5">
+            <label className="text-[10px] uppercase font-mono tracking-wider text-slate-400 font-bold">
+              Filter Active Region Node
+            </label>
             <select
-              className="mt-2 w-full rounded-lg border border-[#1F2937] bg-[#030712] p-2.5 text-white transition-all duration-200 outline-none focus:border-[#38BDF8] focus:ring-1 focus:ring-[#38BDF8]/50 shadow-[0_0_8px_0.5px_rgba(56,189,248,0.15)] focus:shadow-[0_0_10px_0.5px_rgba(56,189,248,0.3)] font-medium tracking-tight cursor-pointer text-xs uppercase"
+              className="w-full rounded-lg border border-slate-800 bg-[#0e0b16] p-2 text-white outline-none focus:border-purple-500 transition-all cursor-pointer text-xs uppercase"
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
             >
@@ -194,16 +183,115 @@ export default function Home() {
           </div>
 
           {error && (
-            <div className="rounded-lg border border-red-900/50 bg-red-950/20 p-3 text-xs text-red-400 backdrop-blur-sm">
+            <div className="rounded-lg border border-red-950 bg-red-950/20 p-2.5 text-xs text-red-400 font-mono">
               {error}
             </div>
           )}
 
-          {/* Integrated internal component containing network telemetry analytics and export logic */}
-          <NetworkDashboard points={points} />
-        </div>
+          {/* TELEMETRY CARDS METRICS SECTION */}
+          <div className="space-y-3">
+            {/* POPULATION CARD */}
+            <div className="rounded-xl border border-slate-900 bg-slate-950/40 p-4">
+              <p className="text-[10px] uppercase tracking-wider text-purple-400 font-mono font-bold">
+                Population Served
+              </p>
+              <h3 className="mt-1 text-2xl font-bold text-white tracking-tight">
+                {loading ? (
+                  <span className="text-xs font-medium text-slate-600 animate-pulse">Querying Database...</span>
+                ) : (
+                  Number(metrics?.population_served || 0).toLocaleString()
+                )}
+              </h3>
+            </div>
 
-      </aside>
-    </main>
+            {/* NATIONAL COVERAGE CARD */}
+            <div className="rounded-xl border border-slate-900 bg-slate-950/40 p-4">
+              <p className="text-[10px] uppercase tracking-wider text-purple-400 font-mono font-bold">
+                National Coverage Score
+              </p>
+              <h3 className="mt-1 text-2xl font-bold text-white tracking-tight">
+                {loading ? (
+                  <span className="text-xs font-medium text-slate-600 animate-pulse">Querying Database...</span>
+                ) : (
+                  `${metrics?.national_coverage_score ?? 0}%`
+                )}
+              </h3>
+            </div>
+
+            {/* GAP SCORE CARD */}
+            <div className="rounded-xl border border-slate-900 bg-slate-950/40 p-4">
+              <p className="text-[10px] uppercase tracking-wider text-purple-400 font-mono font-bold">
+                Gap Score
+              </p>
+              <h3 className="mt-1 text-2xl font-bold text-white tracking-tight">
+                {loading ? (
+                  <span className="text-xs font-medium text-slate-600 animate-pulse">Querying Database...</span>
+                ) : (
+                  metrics?.gap_score ?? 0
+                )}
+              </h3>
+            </div>
+          </div>
+
+          {/* DATA METADATA CUSTODY PROFILE */}
+          <div className="rounded-xl border border-slate-900 bg-slate-950/20 p-4 space-y-2 text-[11px]">
+            <div className="flex justify-between border-b border-slate-900 pb-1.5">
+              <span className="text-slate-500">Primary Oversight:</span>
+              <span className="text-slate-300 font-medium">Telecom Regulatory Authority</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-slate-500">Data Rights Portfolio:</span>
+              <span className="text-purple-400 font-medium">Public-Private Consortium</span>
+            </div>
+          </div>
+
+          {/* EXTERNAL INJECTED COMPONENT CONTROLS */}
+          <div className="pt-2 border-t border-slate-900">
+            <NetworkDashboard points={points} />
+          </div>
+
+        </div>
+      </div>
+
+      {/* PILLAR III: Developer Signature Authentication Popover Modal */}
+      {isModalOpen && (
+        <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="w-[380px] bg-[#0e0b16] border border-slate-800 rounded-xl p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-150">
+            
+            <div className="mb-5">
+              <span className="text-[10px] text-purple-400 font-mono tracking-widest uppercase block mb-0.5">System Verification</span>
+              <h3 className="text-sm font-bold text-white">Lead Architect Signature</h3>
+            </div>
+
+            {/* ⚠️ ENTER YOUR PERSONAL METADATA CONFIGURATION VALUES DIRECTLY HERE */}
+            <div className="space-y-2 font-mono text-xs border-y border-slate-900 py-3.5 my-4">
+              <div className="flex justify-between py-0.5">
+                <span className="text-slate-500">ARCHITECT:</span>
+                <span className="text-slate-200 font-semibold tracking-wide">Your Full Name</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span className="text-slate-500">ASSIGNMENT:</span>
+                <span className="text-slate-200">Batch 2 Interns</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span className="text-slate-500">CORE STACK:</span>
+                <span className="text-purple-400">Next.js, FastAPI, Tailwind, Map Engine</span>
+              </div>
+            </div>
+
+            <div className="flex justify-end">
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-1.5 text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-lg transition-all border border-slate-800"
+              >
+                Dismiss Sign-off
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+    </div>
   );
 }
