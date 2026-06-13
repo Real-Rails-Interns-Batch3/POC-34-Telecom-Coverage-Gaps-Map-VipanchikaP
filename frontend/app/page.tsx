@@ -263,11 +263,10 @@ export default function Home() {
               <h3 className="text-sm font-bold text-white">Lead Architect Signature</h3>
             </div>
 
-            {/* ⚠️ ENTER YOUR PERSONAL METADATA CONFIGURATION VALUES DIRECTLY HERE */}
             <div className="space-y-2 font-mono text-xs border-y border-slate-900 py-3.5 my-4">
               <div className="flex justify-between py-0.5">
                 <span className="text-slate-500">ARCHITECT:</span>
-                <span className="text-slate-200 font-semibold tracking-wide">Your Full Name</span>
+                <span className="text-slate-200 font-semibold tracking-wide">Vipanjika P</span>
               </div>
               <div className="flex justify-between py-0.5">
                 <span className="text-slate-500">ASSIGNMENT:</span>
@@ -275,7 +274,7 @@ export default function Home() {
               </div>
               <div className="flex justify-between py-0.5">
                 <span className="text-slate-500">CORE STACK:</span>
-                <span className="text-purple-400">Next.js, FastAPI, Tailwind, Map Engine</span>
+                <span className="text-purple-400">Next.js, FastAPI, Tailwind, React Leaflet</span>
               </div>
             </div>
 
