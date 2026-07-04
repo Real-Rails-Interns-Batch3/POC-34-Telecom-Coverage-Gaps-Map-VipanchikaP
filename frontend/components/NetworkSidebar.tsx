@@ -1,6 +1,17 @@
 import React from 'react';
 
-export default function NetworkSidebar({ stats, onExport }) {
+// Explicitly type the incoming dashboard statistics and interaction props
+interface NetworkSidebarProps {
+  stats?: {
+    totalRegions?: number;
+    avgCoverage?: string | number;
+    avgGap?: string | number;
+    criticalAreas?: number;
+  };
+  onExport?: () => void;
+}
+
+export default function NetworkSidebar({ stats, onExport }: NetworkSidebarProps) {
   // Fallback default values in case stats aren't loaded yet
   const {
     totalRegions = 0,

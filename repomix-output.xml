@@ -1,0 +1,1409 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+backend/app/main.py
+backend/app/mock/mock_data.json
+backend/VAR_REPORT.md
+db/seeds.rb
+frontend/.gitignore
+frontend/app/data/telecomPoints.ts
+frontend/app/favicon.ico
+frontend/app/globals.css
+frontend/app/layout.tsx
+frontend/app/page.tsx
+frontend/components/MapView.tsx
+frontend/components/NetworkDashboard.tsx
+frontend/components/NetworkSidebar.tsx
+frontend/eslint.config.mjs
+frontend/next.config.ts
+frontend/package.json
+frontend/postcss.config.mjs
+frontend/public/file.svg
+frontend/public/globe.svg
+frontend/public/next.svg
+frontend/public/vercel.svg
+frontend/public/window.svg
+frontend/README.md
+frontend/tsconfig.json
+public/telecom-data (1).csv
+README.md
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#   Usually these files are written by a python script from a template
+#   before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+# Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+# uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+# poetry.lock
+# poetry.toml
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
+#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
+# pdm.lock
+# pdm.toml
+.pdm-python
+.pdm-build/
+
+# pixi
+#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
+# pixi.lock
+#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
+#   in the .venv directory. It is recommended not to include this directory in version control.
+.pixi
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# Redis
+*.rdb
+*.aof
+*.pid
+
+# RabbitMQ
+mnesia/
+rabbitmq/
+rabbitmq-data/
+
+# ActiveMQ
+activemq-data/
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#   JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#   be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#   and can be added to the global gitignore or merged into this file.  For a more nuclear
+#   option (not recommended) you can uncomment the following to ignore the entire idea folder.
+# .idea/
+
+# Abstra
+#   Abstra is an AI-powered process automation framework.
+#   Ignore directories containing user credentials, local state, and settings.
+#   Learn more at https://abstra.io/docs
+.abstra/
+
+# Visual Studio Code
+#   Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
+#   that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+#   and can be added to the global gitignore or merged into this file. However, if you prefer, 
+#   you could uncomment the following to ignore the entire vscode folder
+# .vscode/
+# Temporary file for partial code execution
+tempCodeRunnerFile.py
+
+# Ruff stuff:
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+# Streamlit
+.streamlit/secrets.toml
+</file>
+
+<file path="backend/app/mock/mock_data.json">
+{
+  "regions": [
+    {
+      "id": 1,
+      "name": "Urban Core",
+      "coverage_score": 90,
+      "population_served": 2400000,
+      "gap_score": 8,
+      "provider": "TelecomNet"
+    },
+    {
+      "id": 2,
+      "name": "Rural East",
+      "coverage_score": 48,
+      "population_served": 640000,
+      "gap_score": 52,
+      "provider": "SignalWave"
+    },
+    {
+      "id": 3,
+      "name": "Mountain Zone",
+      "coverage_score": 33,
+      "population_served": 210000,
+      "gap_score": 67,
+      "provider": "No Stable Coverage"
+    }
+  ]
+}
+</file>
+
+<file path="backend/VAR_REPORT.md">
+# User Acceptance Testing (UAT) Checklist - POC-34
+
+## 🧪 Functional Verification Matrix
+
+| Test Case ID | Feature Under Test | Expected Operational Outcome | Status |
+| :---: | :--- | :--- | :---: |
+| **TC-001** | UI DNA Structural Lock | Application renders full screen canvas on #030712 with a precise 70/30 split. | **PASS** |
+| **TC-002** | Geographic Layer Initialization | Leaflet map layer renders zoom bounds and coordinates inside the 70% frame smoothly. | **PASS** |
+| **TC-003** | Telemetry Handshake Stream | Next.js layout displays live server statistics (12.4M, 74%) fetched from the Python pipeline. | **PASS** |
+| **TC-004** | Backend Fault Resilience | Gracefully falls back to baseline tracking configurations without crashing if connection drops. | **PASS** |
+</file>
+
+<file path="db/seeds.rb">
+require 'csv'
+
+puts "Cleaning out old data..."
+Region.destroy_all rescue nil
+
+puts "Reading sample data file from public folder..."
+csv_text = File.read(Rails.root.join('public', 'telecom-data (1).csv'))
+csv = CSV.parse(csv_text, headers: true)
+
+csv.each do |row|
+  Region.create!(
+    name: row['Region'],
+    latitude: row['Latitude'].to_f,
+    longitude: row['Longitude'].to_f,
+    coverage: row['Coverage'],
+    gap: row['Gap'].to_i
+  )
+end
+
+puts "Done! Added #{Region.count rescue 0} markers to the database."
+</file>
+
+<file path="frontend/.gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+</file>
+
+<file path="frontend/app/data/telecomPoints.ts">
+export const telecomPoints = [
+    {
+    id: 1,
+    name: "Urban Core",
+    position: [40.7128, -74.006],
+    coverage: 92,
+    gap: 8,
+    },
+    {
+    id: 2,
+    name: "Rural East",
+    position: [39.9526, -75.1652],
+    coverage: 48,
+    gap: 52,
+    },
+    {
+    id: 3,
+    name: "Mountain Zone",
+    position: [38.9072, -77.0369],
+    coverage: 33,
+    gap: 67,
+    },
+    {
+    id: 4,
+    name: "Coastal South",
+    position: [34.0522, -118.2437],
+    coverage: 78,
+    gap: 22,
+    },
+];
+</file>
+
+<file path="frontend/components/NetworkDashboard.tsx">
+import React from "react";
+
+export type TelecomPoint = {
+  id: number;
+  name: string;
+  coverage: number;
+  gap: number;
+};
+
+export default function NetworkDashboard({ points }: { points: TelecomPoint[] }) {
+  const totalRegions = points.length;
+
+  const avgCoverage =
+    totalRegions > 0
+      ? (points.reduce((sum, p) => sum + p.coverage, 0) / totalRegions).toFixed(1)
+      : "0.0";
+
+  const avgGap =
+    totalRegions > 0
+      ? (points.reduce((sum, p) => sum + p.gap, 0) / totalRegions).toFixed(1)
+      : "0.0";
+
+  const criticalAreas = points.filter((p) => p.gap > 50).length;
+
+  const exportCSV = () => {
+    const csvContent = [
+      ["Region", "Coverage", "Gap"],
+      ...points.map((p) => [p.name, p.coverage, p.gap]),
+    ]
+      .map((row) => row.join(","))
+      .join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "telecom-report.csv";
+    link.click();
+  };
+
+  return (
+    <div className="w-full bg-[#0d1117] text-white font-sans p-5 rounded-xl border border-[#30363d] shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+      <div>
+        <h2 className="text-[1.15rem] font-semibold mb-3 tracking-wide">
+          Network Dashboard
+        </h2>
+        <div className="text-[0.95rem] mb-2 text-[#f0f6fc]">
+          Total Regions: <span className="font-medium">{totalRegions}</span>
+        </div>
+        <div className="text-[0.95rem] mb-2 text-[#f0f6fc]">
+          Avg Coverage: <span className="font-medium">{avgCoverage}%</span>
+        </div>
+        <div className="text-[0.95rem] mb-2 text-[#f0f6fc]">
+          Avg Gap: <span className="font-medium">{avgGap}</span>
+        </div>
+        <div className="text-[0.95rem] mb-2 text-[#f0f6fc]">
+          Critical Areas: <span className="font-medium">{criticalAreas}</span>
+        </div>
+      </div>
+
+      <hr className="border-0 border-t border-[#30363d] my-4" />
+
+      <button
+        onClick={exportCSV}
+        className="w-full bg-[#161b22] text-white border border-[#30363d] px-4 py-2.5 text-[0.95rem] font-medium rounded-md cursor-pointer transition-colors duration-200 mb-5 hover:bg-[#21262d] hover:border-[#8b949e] focus:outline-none focus:ring-2 focus:ring-[#8b949e]"
+      >
+        Export CSV
+      </button>
+
+      <div>
+        <h3 className="text-base font-semibold mb-3">Legend</h3>
+        
+        <div className="flex items-center mb-2.5">
+          <span className="w-3.5 h-3.5 rounded-full mr-3 inline-block bg-[#54d396] shadow-[0_0_4px_rgba(84,211,150,0.4)]"></span>
+          <span className="text-[0.95rem] text-[#f0f6fc]">Low (0–20)</span>
+        </div>
+
+        <div className="flex items-center mb-2.5">
+          <span className="w-3.5 h-3.5 rounded-full mr-3 inline-block bg-[#f1c453] shadow-[0_0_4px_rgba(241,196,83,0.4)]"></span>
+          <span className="text-[0.95rem] text-[#f0f6fc]">Medium (21–50)</span>
+        </div>
+
+        <div className="flex items-center">
+          <span className="w-3.5 h-3.5 rounded-full mr-3 inline-block bg-[#f85149] shadow-[0_0_4px_rgba(248,81,73,0.4)]"></span>
+          <span className="text-[0.95rem] text-[#f0f6fc]">High (51+)</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/components/NetworkSidebar.tsx">
+import React from 'react';
+
+export default function NetworkSidebar({ stats, onExport }) {
+  // Fallback default values in case stats aren't loaded yet
+  const {
+    totalRegions = 0,
+    avgCoverage = '0.0%',
+    avgGap = '0.0',
+    criticalAreas = 0
+  } = stats || {};
+
+  return (
+    <div className="w-[280px] bg-[#0d1117] text-white font-sans p-6 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+      {/* Stats Section */}
+      <div>
+        <h2 className="text-[1.15rem] font-semibold mt-0 mb-3">Network Dashboard</h2>
+        <div className="text-[0.95rem] mb-2 text-[#f0f6fc]">Total Regions: <span className="font-medium">{totalRegions}</span></div>
+        <div className="text-[0.95rem] mb-2 text-[#f0f6fc]">Avg Coverage: <span className="font-medium">{avgCoverage}</span></div>
+        <div className="text-[0.95rem] mb-2 text-[#f0f6fc]">Avg Gap: <span className="font-medium">{avgGap}</span></div>
+        <div className="text-[0.95rem] mb-2 text-[#f0f6fc]">Critical Areas: <span className="font-medium">{criticalAreas}</span></div>
+      </div>
+
+      {/* Divider */}
+      <hr className="border-0 border-t border-[#30363d] my-4" />
+
+      {/* Export Button */}
+      <button 
+        onClick={onExport}
+        className="w-full bg-[#161b22] text-white border border-[#30363d] px-4 py-2.5 text-[0.95rem] font-medium rounded-md cursor-pointer transition-colors duration-200 mb-6 hover:bg-[#21262d] hover:border-[#8b949e] focus:outline-none focus:ring-2 focus:ring-[#8b949e]"
+      >
+        Export CSV
+      </button>
+
+      {/* Legend Section */}
+      <div>
+        <h3 className="text-base font-semibold mt-0 mb-3">Legend</h3>
+        
+        <div className="flex items-center mb-2.5">
+          <span className="w-3.5 h-3.5 rounded-full mr-3 inline-block bg-[#54d396] shadow-[0_0_4px_rgba(84,211,150,0.4)]"></span>
+          <span className="text-[0.95rem] text-[#f0f6fc]">Low (0–20)</span>
+        </div>
+        
+        <div className="flex items-center mb-2.5">
+          <span className="w-3.5 h-3.5 rounded-full mr-3 inline-block bg-[#f1c453] shadow-[0_0_4px_rgba(241,196,83,0.4)]"></span>
+          <span className="text-[0.95rem] text-[#f0f6fc]">Medium (21–50)</span>
+        </div>
+        
+        <div className="flex items-center mb-2.5">
+          <span className="w-3.5 h-3.5 rounded-full mr-3 inline-block bg-[#f85149] shadow-[0_0_4px_rgba(248,81,73,0.4)]"></span>
+          <span className="text-[0.95rem] text-[#f0f6fc]">High (51+)</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/eslint.config.mjs">
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;
+</file>
+
+<file path="frontend/next.config.ts">
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+</file>
+
+<file path="frontend/package.json">
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-leaflet": "^5.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/leaflet": "^1.9.21",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+</file>
+
+<file path="frontend/postcss.config.mjs">
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;
+</file>
+
+<file path="frontend/public/file.svg">
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
+</file>
+
+<file path="frontend/public/globe.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+</file>
+
+<file path="frontend/public/next.svg">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
+</file>
+
+<file path="frontend/public/vercel.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+</file>
+
+<file path="frontend/public/window.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+</file>
+
+<file path="frontend/README.md">
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</file>
+
+<file path="frontend/tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="public/telecom-data (1).csv">
+@'
+ID,Region,Latitude,Longitude,Coverage,Gap
+TEL001,North-East,45.1234,-73.5678,Good,20
+TEL002,North-East,45.1245,-73.5689,Poor,80
+TEL003,South-West,34.0522,-118.2437,Excellent,10
+TEL004,Mid-West,41.8781,-87.6298,Fair,60
+TEL005,West-Coast,37.7749,-122.4194,Excellent,5
+'@ | Out-File -FilePath "public\telecom-data (1).csv" -Encoding utf8
+</file>
+
+<file path="frontend/app/globals.css">
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+/* ... rest of your root variables ... */
+@import "tailwindcss";
+
+:root {
+  /* Set your default background to the requested obsidian color */
+  --background: #7190e4;
+  --foreground: #f3f4f6;
+}
+
+@theme {
+  /* Define your background color */
+  --color-obsidian-dark: #030712;    /* Deep layout background */
+  --color-obsidian-card: #0b1329;    /* Slightly lighter card background */
+
+  /* Define your typography colors */
+  --color-heading-main: #ffffff;     /* Bright white for primary titles */
+  --color-heading-accent: #38bdf8;   /* Soft cyber blue for section headers */
+  --color-text-body: #94a3b8;        /* Muted slate gray for readable descriptions */
+}
+
+/* Force dark mode values to be the same obsidian scheme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #57585c;
+    --foreground: #f3f4f6;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Plus Jakarta Sans', sans-serif; /* Updated font */
+}
+
+/* ==========================================================================
+   FIX FOR LEAFLET MAP TILE ALIGNMENT & JAGGED LINES
+   ========================================================================== */
+.leaflet-container img.leaflet-tile {
+  max-width: none !important;
+  max-height: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ==========================================================================
+   MAP COLOR CHANGE (DARK MODE OVERRIDE)
+   ========================================================================== */
+   
+/* This attribute selector will forcefully catch the tiles regardless of loading order */
+img[class*="leaflet-tile"] {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%) !important;
+}
+
+div[class*="leaflet-container"] {
+  background-color: #0b1117 !important;
+}
+</file>
+
+<file path="frontend/app/layout.tsx">
+import type { Metadata } from "next";
+import "leaflet/dist/leaflet.css";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
+    </html>
+  );
+}
+</file>
+
+<file path="README.md">
+# 1. Create and overwrite the README.md file with the detailed Rails template
+@'
+# POC-34: Telecom Coverage Gaps Map & Intelligence Dashboard
+
+A robust Ruby on Rails intelligence dashboard designed to ingest, process, and visualize geospatial telecom data. This platform maps coverage dead zones, highlights infrastructure blind spots, and cross-references data with regional population metrics to prioritize network expansion.
+
+## 🛰️ Core Features
+
+- **Geospatial Mapping:** Interactive map interface rendering signal strength drops and coverage boundary gaps.
+- **Infrastructure Blind Spot Detection:** Algorithmic identification of areas lacking cell tower density relative to terrain.
+- **Population Connectivity Analysis:** Overlays demographic data with coverage maps to highlight high-impact, underserved communities.
+- **Real-Time Analytics:** Dashboard widgets calculating total population affected, gap percentages, and carrier performance metrics.
+
+## 🛠️ System Architecture & Tech Stack
+
+- **Backend Framework:** Ruby on Rails (v7+)
+- **Database:** PostgreSQL (with **PostGIS** extension for spatial/geographic queries)
+- **Frontend / UI:** Hotwire (Turbo & Stimulus) for real-time updates, paired with Tailwind CSS
+- **Mapping Engine:** Leaflet.js / Mapbox GL JS integrations via Stimulus controllers
+
+## 🚀 Getting Started
+
+Follow these steps to set up the Rails application locally.
+
+### Prerequisites
+
+Ensure you have the following installed on your system:
+- **Ruby** (Check the `.ruby-version` file for the exact version)
+- **Bundler** (`gem install bundler`)
+- **PostgreSQL** (with the PostGIS bundle active)
+
+### Installation & Setup
+
+1. **Clone the repository:**
+```bash
+   git clone [https://github.com/Real-Rails-Interns-Batch3/POC-34-Telecom-Coverage-Gaps-Map-VipanchikaP.git](https://github.com/Real-Rails-Interns-Batch3/POC-34-Telecom-Coverage-Gaps-Map-VipanchikaP.git)
+   cd POC-34-Telecom-Coverage-Gaps-Map-VipanchikaP
+</file>
+
+<file path="backend/app/main.py">
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+import json
+import os
+
+app = FastAPI(title="Telecom Coverage Gaps API")
+
+# SECURITY: Allows your Next.js frontend (port 3000) to safely talk to this backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# CRASH PREVENTION: Dynamically looks up absolute paths on Windows
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MOCK_DATA_PATH = os.path.join(BASE_DIR, "mock", "mock_data.json")
+
+
+@app.get("/")
+def home():
+    return {
+        "status": "online",
+        "project": "Telecom Coverage Gaps Map"
+    }
+
+
+@app.get("/api/coverage")
+def coverage():
+    # Defensive fall-safe check if the mock data file hasn't been generated yet
+    if not os.path.exists(MOCK_DATA_PATH):
+        return {"type": "FeatureCollection", "features": []}
+
+    with open(MOCK_DATA_PATH, "r") as file:
+        data = json.load(file)
+
+    return data
+
+
+# METRICS HANDSHAKE ENDPOINT FOR SIDEBAR (Top Box)
+@app.get("/api/v1/dashboard/metrics")
+def get_dashboard_metrics():
+    if not os.path.exists(MOCK_DATA_PATH):
+        return {"population_served": 0, "national_coverage_score": 0, "gap_score": 0}
+
+    with open(MOCK_DATA_PATH, "r") as file:
+        data = json.load(file)
+
+    regions = data.get("regions", [])
+    if not regions:
+        return {"population_served": 0, "national_coverage_score": 0, "gap_score": 0}
+
+    total_population = sum(
+        region["population_served"]
+        for region in regions
+    )
+
+    average_coverage = sum(
+        region["coverage_score"]
+        for region in regions
+    ) / len(regions)
+
+    average_gap = sum(
+        region["gap_score"]
+        for region in regions
+    ) / len(regions)
+
+    return {
+        "population_served": total_population,
+        "national_coverage_score": round(average_coverage, 2),
+        "gap_score": round(average_gap, 2)
+    }
+
+
+# NEW ENDPOINT: PARSES RAW INDIVIDUAL POINTS FOR YOUR NEW NETWORK SIDEBAR (Bottom Box & CSV Export)
+@app.get("/api/v1/dashboard/points")
+def get_dashboard_points():
+    if not os.path.exists(MOCK_DATA_PATH):
+        return []
+
+    with open(MOCK_DATA_PATH, "r") as file:
+        data = json.load(file)
+
+    regions = data.get("regions", [])
+    
+    points_data = []
+    for idx, region in enumerate(regions):
+        points_data.append({
+            "id": region.get("id", idx + 1),
+            "name": region.get("name", f"Region {idx + 1}"),
+            "coverage": region.get("coverage_score", 0),
+            "gap": region.get("gap_score", 0)
+        })
+
+    return points_data
+</file>
+
+<file path="frontend/components/MapView.tsx">
+"use client";
+
+import "leaflet/dist/leaflet.css";
+import {
+  MapContainer,
+  TileLayer,
+  CircleMarker,
+  Popup,
+} from "react-leaflet";
+
+// ✅ DATA INSIDE SAME FILE (NO IMPORT ERRORS)
+export const telecomPoints = [
+  {
+    id: 1,
+    name: "Urban Core",
+    position: [40.7128, -74.006],
+    coverage: 92,
+    gap: 8,
+  },
+  {
+    id: 2,
+    name: "Rural East",
+    position: [39.9526, -75.1652],
+    coverage: 48,
+    gap: 52,
+  },
+  {
+    id: 3,
+    name: "Mountain Zone",
+    position: [38.9072, -77.0369],
+    coverage: 33,
+    gap: 67,
+  },
+  {
+    id: 4,
+    name: "Coastal South",
+    position: [34.0522, -118.2437],
+    coverage: 78,
+    gap: 22,
+  },
+];
+
+interface MapViewProps {
+  selectedRegion: string;
+}
+
+export default function MapView({ selectedRegion }: MapViewProps) {
+  const filteredPoints =
+    selectedRegion === "All Regions"
+      ? telecomPoints
+      : telecomPoints.filter((p) => p.name === selectedRegion);
+
+  const getColor = (gap: number) => {
+    if (gap <= 20) return "#22c55e";
+    if (gap <= 50) return "#eab308";
+    return "#ef4444";
+  };
+
+  return (
+    <div style={{ height: "100%", width: "100%" }}>
+      <MapContainer
+        center={[39.5, -98.35]}
+        zoom={4}
+        scrollWheelZoom={true}
+        style={{ height: "100%", width: "100%" }}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; OpenStreetMap"
+        />
+
+        {filteredPoints.map((point) => (
+          <CircleMarker
+            key={point.id}
+            center={point.position as [number, number]}
+            radius={12}
+            pathOptions={{
+              color: getColor(point.gap),
+              fillColor: getColor(point.gap),
+              fillOpacity: 0.9,
+              weight: 2,
+            }}
+          >
+            <Popup>
+              <div>
+                <b>{point.name}</b>
+                <br />
+                Coverage: {point.coverage}%
+                <br />
+                Gap: {point.gap}
+              </div>
+            </Popup>
+          </CircleMarker>
+        ))}
+      </MapContainer>
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/app/page.tsx">
+"use client";
+
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+// Lightweight local SVG icon substitutes to avoid external dependency on `lucide-react`
+import React from "react";
+
+const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 8v4" />
+    <path d="M12 16h.01" />
+  </svg>
+);
+
+export const Info = (props: React.SVGProps<SVGSVGElement>) => <SvgIcon {...props} />;
+export const X = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18 6L6 18" />
+    <path d="M6 6l12 12" />
+  </svg>
+);
+export const SlidersHorizontal = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M4 6h16" />
+    <path d="M10 6v12" />
+    <path d="M4 18h16" />
+    <path d="M14 18V6" />
+  </svg>
+);
+export const InfoIcon = Info;
+import NetworkDashboard, { TelecomPoint } from "@/components/NetworkDashboard";
+
+// Dynamically import MapView to disable SSR since maps rely on client-side browser APIs
+const MapView = dynamic(
+  () => import("@/components/MapView"),
+  { ssr: false }
+);
+
+interface DashboardMetrics {
+  population_served: string;
+  national_coverage_score: number;
+  gap_score: number;
+}
+
+export default function Home() {
+  // --- Back-end State Hooks (Preserved) ---
+  const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [selectedRegion, setSelectedRegion] = useState<string>("All Regions");
+  const [error, setError] = useState<string | null>(null);
+  const [points, setPoints] = useState<TelecomPoint[]>([]);
+
+  // --- Cinematic UI Layout Controls ---
+  const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  // 1. Preserved Side Effect: Macro metrics fetch configuration
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+
+    const queryParam = selectedRegion !== "All Regions" 
+      ? `?region=${encodeURIComponent(selectedRegion)}` 
+      : "";
+    
+    fetch(`http://127.0.0.1:8000/api/v1/dashboard/metrics${queryParam}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data: DashboardMetrics) => {
+        setMetrics(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Data Handshake Failed:", err);
+        setError("Failed to fetch current metrics from backend server");
+        setLoading(false);
+      });
+  }, [selectedRegion]);
+
+  // 2. Preserved Side Effect: Raw map points fetch configuration
+  useEffect(() => {
+    const queryParam = selectedRegion !== "All Regions" 
+      ? `?region=${encodeURIComponent(selectedRegion)}` 
+      : "";
+
+    fetch(`http://127.0.0.1:8000/api/v1/dashboard/points${queryParam}`)
+      .then((res) => res.ok ? res.json() : [])
+      .then((data: TelecomPoint[]) => setPoints(data))
+      .catch((err) => console.error("Failed to load dashboard points:", err));
+  }, [selectedRegion]);
+
+  return (
+    /* PILLAR I: Custom Deep DNA Background (Obsidian Slate: #0e0b16, Luminance < 10%) */
+    <div className="relative w-screen h-screen overflow-hidden bg-[#0e0b16] text-slate-100 tracking-tight font-sans select-none">
+      
+      {/* PILLAR III: Minimalist Transparent Header Bar */}
+      <header className="absolute top-0 left-0 z-40 w-full h-16 flex items-center justify-between px-6 bg-gradient-to-b from-[#0e0b16]/90 via-[#0e0b16]/40 to-transparent backdrop-blur-[2px] border-b border-purple-500/10">
+        <div>
+          <h1 className="text-xs font-bold tracking-widest text-slate-400 uppercase">
+            Infocreon Internship - <span className="text-purple-400">Telecom Infrastructure Engine</span>
+          </h1>
+        </div>
+        
+        {/* Top-Right Control Actions */}
+        <div className="flex items-center gap-3">
+          {/* Main Map Layer Filter Trigger Toggle */}
+          <button 
+            onClick={() => setIsPanelOpen(!isPanelOpen)}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-[#0e0b16]/80 text-xs font-medium text-slate-300 hover:text-purple-400 hover:border-purple-500/40 transition-all duration-200"
+          >
+            <SlidersHorizontal size={14} />
+            <span>Telemetry Controls</span>
+          </button>
+
+          {/* Core Info Icon Trigger */}
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="p-2 rounded-lg border border-slate-800 bg-[#0e0b16]/80 text-slate-400 hover:text-purple-400 hover:border-purple-500/40 transition-all duration-200"
+          >
+            <Info size={15} />
+          </button>
+        </div>
+      </header>
+
+      {/* PILLAR II: 100% Full viewport Stage Box */}
+      <main className="w-full h-full z-10 relative">
+        <MapView selectedRegion={selectedRegion} />
+
+        {/* Dynamic Map Status Indicator Widget (Bottom Left) */}
+        <div className="absolute bottom-6 left-6 z-30 p-4 rounded-xl border border-slate-800/80 bg-[#0e0b16]/90 backdrop-blur-md shadow-2xl max-w-xs">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
+            <p className="text-[10px] uppercase font-mono tracking-wider text-slate-400">Active Node Region Context:</p>
+          </div>
+          <p className="text-xs font-bold text-white mt-1 uppercase tracking-wide">{selectedRegion}</p>
+        </div>
+      </main>
+
+      {/* PILLAR II: Slide-Over Intelligence Panel Overlay */}
+      <div 
+        className={`absolute top-0 right-0 z-50 h-full w-[420px] max-w-[90vw] bg-[#0e0b16]/95 border-l border-slate-800/80 backdrop-blur-xl shadow-2xl transition-transform duration-300 ease-in-out transform ${
+          isPanelOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        {/* Panel Container Header */}
+        <div className="flex items-center justify-between p-6 border-b border-slate-900">
+          <div>
+            <span className="text-[10px] text-purple-400 font-mono tracking-widest uppercase block">Infrastructure Analytics</span>
+            <h2 className="text-md font-bold text-white tracking-tight">Intelligence Matrix</h2>
+          </div>
+          <button 
+            onClick={() => setIsPanelOpen(false)}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition-colors"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        {/* Scrollable Content Engine Wrapper */}
+        <div className="p-6 space-y-5 overflow-y-auto h-[calc(100%-76px)]">
+          
+          {/* REGION FILTER DROPDOWN */}
+          <div className="space-y-1.5">
+            <label className="text-[10px] uppercase font-mono tracking-wider text-slate-400 font-bold">
+              Filter Active Region Node
+            </label>
+            <select
+              className="w-full rounded-lg border border-slate-800 bg-[#0e0b16] p-2 text-white outline-none focus:border-purple-500 transition-all cursor-pointer text-xs uppercase"
+              value={selectedRegion}
+              onChange={(e) => setSelectedRegion(e.target.value)}
+            >
+              <option value="All Regions">All Regions</option>
+              <option value="Urban Core">Urban Core</option>
+              <option value="Rural East">Rural East</option>
+              <option value="Mountain Zone">Mountain Zone</option>
+              <option value="Coastal South">Coastal South</option>
+            </select>
+          </div>
+
+          {error && (
+            <div className="rounded-lg border border-red-950 bg-red-950/20 p-2.5 text-xs text-red-400 font-mono">
+              {error}
+            </div>
+          )}
+
+          {/* TELEMETRY CARDS METRICS SECTION */}
+          <div className="space-y-3">
+            {/* POPULATION CARD */}
+            <div className="rounded-xl border border-slate-900 bg-slate-950/40 p-4">
+              <p className="text-[10px] uppercase tracking-wider text-purple-400 font-mono font-bold">
+                Population Served
+              </p>
+              <h3 className="mt-1 text-2xl font-bold text-white tracking-tight">
+                {loading ? (
+                  <span className="text-xs font-medium text-slate-600 animate-pulse">Querying Database...</span>
+                ) : (
+                  Number(metrics?.population_served || 0).toLocaleString()
+                )}
+              </h3>
+            </div>
+
+            {/* NATIONAL COVERAGE CARD */}
+            <div className="rounded-xl border border-slate-900 bg-slate-950/40 p-4">
+              <p className="text-[10px] uppercase tracking-wider text-purple-400 font-mono font-bold">
+                National Coverage Score
+              </p>
+              <h3 className="mt-1 text-2xl font-bold text-white tracking-tight">
+                {loading ? (
+                  <span className="text-xs font-medium text-slate-600 animate-pulse">Querying Database...</span>
+                ) : (
+                  `${metrics?.national_coverage_score ?? 0}%`
+                )}
+              </h3>
+            </div>
+
+            {/* GAP SCORE CARD */}
+            <div className="rounded-xl border border-slate-900 bg-slate-950/40 p-4">
+              <p className="text-[10px] uppercase tracking-wider text-purple-400 font-mono font-bold">
+                Gap Score
+              </p>
+              <h3 className="mt-1 text-2xl font-bold text-white tracking-tight">
+                {loading ? (
+                  <span className="text-xs font-medium text-slate-600 animate-pulse">Querying Database...</span>
+                ) : (
+                  metrics?.gap_score ?? 0
+                )}
+              </h3>
+            </div>
+          </div>
+
+          {/* DATA METADATA CUSTODY PROFILE */}
+          <div className="rounded-xl border border-slate-900 bg-slate-950/20 p-4 space-y-2 text-[11px]">
+            <div className="flex justify-between border-b border-slate-900 pb-1.5">
+              <span className="text-slate-500">Primary Oversight:</span>
+              <span className="text-slate-300 font-medium">Telecom Regulatory Authority</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-slate-500">Data Rights Portfolio:</span>
+              <span className="text-purple-400 font-medium">Public-Private Consortium</span>
+            </div>
+          </div>
+
+          {/* EXTERNAL INJECTED COMPONENT CONTROLS */}
+          <div className="pt-2 border-t border-slate-900">
+            <NetworkDashboard points={points} />
+          </div>
+
+        </div>
+      </div>
+
+      {/* PILLAR III: Developer Signature Authentication Popover Modal */}
+      {isModalOpen && (
+        <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="w-[380px] bg-[#0e0b16] border border-slate-800 rounded-xl p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-150">
+            
+            <div className="mb-5">
+              <span className="text-[10px] text-purple-400 font-mono tracking-widest uppercase block mb-0.5">System Verification</span>
+              <h3 className="text-sm font-bold text-white">Lead Architect Signature</h3>
+            </div>
+
+            <div className="space-y-2 font-mono text-xs border-y border-slate-900 py-3.5 my-4">
+              <div className="flex justify-between py-0.5">
+                <span className="text-slate-500">ARCHITECT:</span>
+                <span className="text-slate-200 font-semibold tracking-wide">Vipanjika P</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span className="text-slate-500">ASSIGNMENT:</span>
+                <span className="text-slate-200">Batch 2 Interns</span>
+              </div>
+              <div className="flex justify-between py-0.5">
+                <span className="text-slate-500">CORE STACK:</span>
+                <span className="text-purple-400">Next.js, FastAPI, Tailwind, React Leaflet</span>
+              </div>
+            </div>
+
+            <div className="flex justify-end">
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-1.5 text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-lg transition-all border border-slate-800"
+              >
+                Dismiss Sign-off
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+    </div>
+  );
+}
+</file>
+
+</files>

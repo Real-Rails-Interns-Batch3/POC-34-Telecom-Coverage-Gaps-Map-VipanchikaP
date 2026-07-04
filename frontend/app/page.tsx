@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 // Lightweight local SVG icon substitutes to avoid external dependency on `lucide-react`
 import React from "react";
 
+// Injected dynamic host check for production vs local development environment stability
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+
 const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
     <circle cx="12" cy="12" r="10" />
@@ -64,7 +67,7 @@ export default function Home() {
       ? `?region=${encodeURIComponent(selectedRegion)}` 
       : "";
     
-    fetch(`http://127.0.0.1:8000/api/v1/dashboard/metrics${queryParam}`)
+    fetch(`${API_BASE_URL}/api/v1/dashboard/metrics${queryParam}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -88,14 +91,14 @@ export default function Home() {
       ? `?region=${encodeURIComponent(selectedRegion)}` 
       : "";
 
-    fetch(`http://127.0.0.1:8000/api/v1/dashboard/points${queryParam}`)
+    fetch(`${API_BASE_URL}/api/v1/dashboard/points${queryParam}`)
       .then((res) => res.ok ? res.json() : [])
       .then((data: TelecomPoint[]) => setPoints(data))
       .catch((err) => console.error("Failed to load dashboard points:", err));
   }, [selectedRegion]);
 
   return (
-    /* PILLAR I: Custom Deep DNA Background (Obsidian Slate: #0e0b16, Luminance < 10%) */
+    /* PILLAR I: Custom Deep DNA Background (Obsidian Slate: #0e0b16, Luminance less than 10%) */
     <div className="relative w-screen h-screen overflow-hidden bg-[#0e0b16] text-slate-100 tracking-tight font-sans select-none">
       
       {/* PILLAR III: Minimalist Transparent Header Bar */}
@@ -113,7 +116,7 @@ export default function Home() {
             onClick={() => setIsPanelOpen(!isPanelOpen)}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-[#0e0b16]/80 text-xs font-medium text-slate-300 hover:text-purple-400 hover:border-purple-500/40 transition-all duration-200"
           >
-            <SlidersHorizontal size={14} />
+            <SlidersHorizontal width={14} height={14} />
             <span>Telemetry Controls</span>
           </button>
 
@@ -122,7 +125,7 @@ export default function Home() {
             onClick={() => setIsModalOpen(true)}
             className="p-2 rounded-lg border border-slate-800 bg-[#0e0b16]/80 text-slate-400 hover:text-purple-400 hover:border-purple-500/40 transition-all duration-200"
           >
-            <Info size={15} />
+            <Info width={15} height={15} />
           </button>
         </div>
       </header>
@@ -157,7 +160,7 @@ export default function Home() {
             onClick={() => setIsPanelOpen(false)}
             className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition-colors"
           >
-            <X size={16} />
+            <X width={16} height={16} />
           </button>
         </div>
 

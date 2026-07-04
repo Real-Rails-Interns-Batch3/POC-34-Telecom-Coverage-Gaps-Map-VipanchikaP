@@ -8,7 +8,10 @@ app = FastAPI(title="Telecom Coverage Gaps API")
 # SECURITY: Allows your Next.js frontend (port 3000) to safely talk to this backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://telecom-frontend.calmgrass-68f2d261.eastasia.azurecontainerapps.io",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
